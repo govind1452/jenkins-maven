@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    
+   
+    
 
     stages {
         stage('Git Checkout'){
@@ -10,8 +13,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                def maven_Home=tool name: 'maven-3', type: 'maven'
-                sh '${mvn_Home}/bin/mvn package'
+                
+                sh 'mvn clean'
+                sh 'mvn compile'
+                sh 'mvn install'
                 echo 'Building..'
             }
         }
