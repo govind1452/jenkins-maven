@@ -3,8 +3,10 @@ pipeline {
 
     stages {
         stage('Git Checkout'){
-            echo 'checkout...'
-            git 'https://github.com/govind1452/jenkins-maven.git'
+            steps{
+                echo 'checkout...'
+                git 'https://github.com/govind1452/jenkins-maven.git'
+            }
         }
         stage('Build') {
             steps {
