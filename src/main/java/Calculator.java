@@ -19,7 +19,7 @@ public class Calculator extends HttpServlet {
         exp="0";
     }
     public void delete(){
-        if(exp.length()>=1
+        if(exp.length()>=1)
             exp=exp.substring(0,exp.length()-1);
 
     }
