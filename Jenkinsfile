@@ -1,11 +1,18 @@
 pipeline{
-  def mvnHome = tool name: 'maven-3', type: 'maven'
-  stage('SCM Checkout'){
-  git 'https://github.com/govind1452/jenkins-maven'
-  
+  stages{
+    
+    stage('SCM Checkout'){
+      steps{
+        git 'https://github.com/govind1452/jenkins-maven'
+      }
   }
   stage('compile'){
-  sh "${mvnHome}/bin/mvn package"
+    steps{
+      def mvnHome = tool name: 'maven-3', type: 'maven'
+      sh "${mvnHome}/bin/mvn package"
+    }
+  
+  }
   }
   
 }
