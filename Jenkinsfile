@@ -1,13 +1,21 @@
-pipeline{
-  Agent any
-  stages{
-    
-    stage('SCM Checkout'){
-      steps{
-        git 'https://github.com/govind1452/jenkins-maven'
-      }
-  }
- 
-  }
-  
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
