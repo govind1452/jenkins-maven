@@ -13,17 +13,22 @@ import java.util.*;
 public class Calculator extends HttpServlet {
     public int hitcount;
     public String exp;
+    public void setExp(String s)
+    {
+        this.exp=s;
+    }
     public void init()
     {
         hitcount=0;
-        exp="0";
+        setExp("");
     }
-    public void delete(){
+    public String delete(){
         if(exp.length()>=1)
             exp=exp.substring(0,exp.length()-1);
+        return exp;
 
     }
-    public void calculate()
+    public String calculate()
     {
         Stack <Double> s=new Stack<Double>();
         double num=0.0;
@@ -83,9 +88,12 @@ public class Calculator extends HttpServlet {
             result=result+s.peek();
             s.pop();
         }
+
         exp=String.valueOf(result);
+        return exp;
     }
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
         String s1=request.getParameter("val");
         System.out.println(s1);
         if(exp.length()>=1&&(exp.charAt(exp.length()-1)<'0'||exp.charAt(exp.length()-1)>'9')&&(s1.charAt(0)<'0'||s1.charAt(0)>'9'))
@@ -100,9 +108,9 @@ public class Calculator extends HttpServlet {
             } else if (s1.equals("reset")) {
                 init();
             } else if (s1.equals("delete")) {
-                delete();
+                String s=delete();
             } else if (s1.equals("=")) {
-                calculate();
+                String a=calculate();
             } else {
                 exp = exp + s1;
             }
