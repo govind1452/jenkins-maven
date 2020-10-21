@@ -9,6 +9,7 @@ pipeline {
                 sh 'mvn compile'
                 sh 'mvn install'
                 echo 'Building..'
+                echo 'lab...'
             }
         }
         stage('Test') {
